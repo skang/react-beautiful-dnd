@@ -2,6 +2,12 @@
 import type { State, DraggableId } from '../types';
 
 export default (state: State, id: DraggableId): boolean => {
+  // support dynamic drag-disabling with $(document).data('rbdDisabled')
+  if (window.$ && window.$(document).data('rbdDisabled')) {
+    debugger;
+    return false;
+  }
+  
   // Ready to go!
   if (state.phase === 'IDLE') {
     return true;
